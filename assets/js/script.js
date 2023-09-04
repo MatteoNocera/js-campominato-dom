@@ -33,7 +33,7 @@ let totalClick = 0;
     function click(points) {
         totalClick += points;
 
-        console.log(totalClick);
+        //console.log(totalClick);
     }
 
 
@@ -111,48 +111,50 @@ startElement.addEventListener('click', function(e) {
         // do dinamicità alla larghezza in base al limite selezionato
         cellElement.style.width =`calc(100% / ${Math.sqrt(limit)})`
 
-        const messageLost = `<div class="text-center fw-bold text-bg-danger ">YOU LOSE</div>`;
+        const messageLost = `<div id="gameover" class="position-absolute start-50 translate-middle-x text-white bg-danger rounded-4 shadow p-4">YOU LOSE</div>`;
 
         if (bombArray.includes(squareNumber)) {
             cellElement.addEventListener('click', function(){
-                
+
                 console.log('hai cliccato la casella numero ' + (squareNumber));
                 cellElement.classList.add('bg-danger');
                 
-                console.log(`hai scoperto ${totalClick} caselle`);
+                cellElement.innerHTML = '💣';
+                
                 console.log('YOU LOSE');
+                console.log(`hai scoperto ${totalClick} caselle`);
 
-                grigliaElement.insertAdjacentHTML('beforebegin', messageLost);
+                grigliaElement.insertAdjacentHTML('afterbegin', messageLost);
 
-                cellElement.removeEventListener('click', cellElement)
+                
 
             })
-        } else {     
-
-            cellElement.addEventListener('click', function(event){
+        } else {
+                cellElement.addEventListener('click', function(){
+                
+                    if (cellElement.classList.contains('bg-primary') === false) {
+    
+                        console.log('hai cliccato la casella numero ' + (squareNumber));
+                        cellElement.classList.add('bg-primary');
+                        click(1);
                     
-                if (cellElement.classList.contains('bg-primary') === false) {
-
-                    console.log('hai cliccato la casella numero ' + (squareNumber));
-                    cellElement.classList.add('bg-primary');
-                    click(1);
                     
-                    
-
+    
                     
                 }
-                 
+                    
             
             
             })
-            
-                
-            
-            
-
-            
-            
         }
+        
+        
+        
+       
+
+          
+            
+        
         
         
 
