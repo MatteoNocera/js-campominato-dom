@@ -46,13 +46,13 @@ function difficult() {
 }
 
 
-
-
 const startElement = document.getElementById('start');
 
 const restartElement = document.getElementById('restart');
 
 const grigliaElement = document.getElementById('griglia');
+
+const selectElement = document.getElementById('select')
 
 
 startElement.addEventListener('click', function(e) {
@@ -61,6 +61,11 @@ startElement.addEventListener('click', function(e) {
 
     // rendo invisibile lo start se cliccato
     startElement.classList.add('d-none');
+
+    // rendo invisibile il select
+    selectElement.classList.add('d-none')
+
+    // rendo visibile il reset
     restartElement.classList.remove('d-none');
 
     // ricarico la pagina se clicco restart
@@ -82,11 +87,7 @@ startElement.addEventListener('click', function(e) {
         limit = 81;
     } else {
         limit = 49;
-    }
-    
-
-    
-        
+    }     
     
         
     let bombArray = [];
@@ -106,14 +107,8 @@ startElement.addEventListener('click', function(e) {
             console.log(bombArray);
         }
     } 
-   
-
-
-
-
     
     // ciclo
-    
     
     for (let i = 0; i < limit; i++) {
         // genero una griglia
@@ -122,12 +117,8 @@ startElement.addEventListener('click', function(e) {
         // costruisco il markup
         const squareMarkup = `<div id="${squareNumber}" class="cell d-flex justify-content-center align-items-center text-white border border-white">${squareNumber}</div>`;
 
-        
-
         // collego il markup al DOM
-        grigliaElement.insertAdjacentHTML('beforeend', squareMarkup);
-
-        
+        grigliaElement.insertAdjacentHTML('beforeend', squareMarkup);        
 
         // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
         const cellElement = document.getElementById(squareNumber);
@@ -162,35 +153,10 @@ startElement.addEventListener('click', function(e) {
                         cellElement.classList.add('bg-primary');
                         click(1);
                     
-                    
-    
-                    
-                }
-                    
-            
-            
-            })
-        }
-        
-        
-        
-       
-
-          
-            
-        
-        
-        
-
-        
-
-
-        
-        
-    }
-
-
-    
+                    }
+                })
+            }      
+    } 
 });
 
 
