@@ -1,0 +1,11 @@
+#griglia {
+    max-width: 800px;
+    aspect-ratio: 1 / 1;
+    padding: 0 3rem;
+}
+
+.cell {
+    width: calc(100% / 10);
+    aspect-ratio: 1 / 1;
+}
+
