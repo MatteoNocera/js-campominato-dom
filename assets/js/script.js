@@ -27,6 +27,14 @@ Confermate lettura come al solito e buon divertimento :baby-yoda:
 
 
 
+let totalClick = 0;
+    
+
+    function click(points) {
+        totalClick += points;
+
+        console.log(totalClick);
+    }
 
 
 
@@ -36,6 +44,7 @@ const startElement = document.getElementById('start');
 const restartElement = document.getElementById('restart');
 
 const grigliaElement = document.getElementById('griglia');
+
 
 startElement.addEventListener('click', function(e) {
 
@@ -103,10 +112,9 @@ startElement.addEventListener('click', function(e) {
         cellElement.style.width =`calc(100% / ${Math.sqrt(limit)})`
 
         const messageLost = `<div class="text-center fw-bold text-bg-danger ">YOU LOSE</div>`;
-        
 
         if (bombArray.includes(squareNumber)) {
-            cellElement.addEventListener('click', function func(event){
+            cellElement.addEventListener('click', function(){
                 
                 console.log('hai cliccato la casella numero ' + (squareNumber));
                 cellElement.classList.add('bg-danger');
@@ -116,7 +124,7 @@ startElement.addEventListener('click', function(e) {
 
                 grigliaElement.insertAdjacentHTML('beforebegin', messageLost);
 
-                
+                cellElement.removeEventListener('click', cellElement)
 
             })
         } else {     
@@ -128,6 +136,9 @@ startElement.addEventListener('click', function(e) {
                     console.log('hai cliccato la casella numero ' + (squareNumber));
                     cellElement.classList.add('bg-primary');
                     click(1);
+                    
+                    
+
                     
                 }
                  
@@ -157,12 +168,4 @@ startElement.addEventListener('click', function(e) {
 });
 
 
-let totalClick = 0;
-    
-
-    function click(points) {
-        totalClick += points;
-
-        console.log(totalClick);
-    }
 
