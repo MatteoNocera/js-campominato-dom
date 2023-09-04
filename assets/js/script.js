@@ -63,17 +63,17 @@ startElement.addEventListener('click', function(e) {
 
     
         
-
+    let limit = 49;
         
     let bombArray = [];
     for (let i = 0; i < 16; i++) {
         /* let bombNumber = bombArray[i];
         console.log(bombNumber); */
-        let randomGenerated = (Math.floor(Math.random() * 100) + 1);
+        let randomGenerated = (Math.floor(Math.random() * limit) + 1);
 
 
         if (bombArray.includes(randomGenerated)) {
-            let getNewNumber = (Math.floor(Math.random() * 100) + 1);
+            let getNewNumber = (Math.floor(Math.random() * limit) + 1);
             bombArray.push(getNewNumber);
             console.log(bombArray);
 
@@ -89,7 +89,7 @@ startElement.addEventListener('click', function(e) {
 
     
     // ciclo
-    let limit = 81;
+    
     
     for (let i = 0; i < limit; i++) {
         // genero una griglia
