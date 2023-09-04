@@ -80,7 +80,7 @@ startElement.addEventListener('click', function(e) {
 
     
     // ciclo
-    let limit = 100;
+    let limit = 81;
     
     for (let i = 0; i < limit; i++) {
         // genero una griglia
@@ -89,45 +89,55 @@ startElement.addEventListener('click', function(e) {
         // costruisco il markup
         const squareMarkup = `<div id="${squareNumber}" class="cell d-flex justify-content-center align-items-center text-white border border-white">${squareNumber}</div>`;
 
+        
+
         // collego il markup al DOM
         grigliaElement.insertAdjacentHTML('beforeend', squareMarkup);
+
+        
 
         // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
         const cellElement = document.getElementById(squareNumber);
 
+        // do dinamicità alla larghezza in base al limite selezionato
+        cellElement.style.width =`calc(100% / ${Math.sqrt(limit)})`
+
+        const messageLost = `<div class="text-center fw-bold text-bg-danger ">YOU LOSE</div>`;
         
-        
+
         if (bombArray.includes(squareNumber)) {
-            cellElement.addEventListener('click', function(){
+            cellElement.addEventListener('click', function func(event){
                 
                 console.log('hai cliccato la casella numero ' + (squareNumber));
-                console.log('YOU LOSE');
                 cellElement.classList.add('bg-danger');
                 
-            
+                console.log(`hai scoperto ${totalClick} caselle`);
+                console.log('YOU LOSE');
 
-                //alert('Hai colpito la bomba');
+                grigliaElement.insertAdjacentHTML('beforebegin', messageLost);
 
+                
 
             })
-        } else {
+        } else {     
+
             cellElement.addEventListener('click', function(event){
-                let clickNumbers = Number(event.detail) 
+                    
+                if (cellElement.classList.contains('bg-primary') === false) {
 
-                let totalClick = 0;
-
-                function click(numeri, event) {
-                    totalClick += clickNumbers
-    
-                    console.log(totalClick);
+                    console.log('hai cliccato la casella numero ' + (squareNumber));
+                    cellElement.classList.add('bg-primary');
+                    click(1);
+                    
                 }
-
-               click(totalClick, clickNumbers)
-
-
-                console.log('hai cliccato la casella numero ' + (squareNumber));
-                cellElement.classList.toggle('bg-primary')
+                 
+            
+            
             })
+            
+                
+            
+            
 
             
             
@@ -147,4 +157,12 @@ startElement.addEventListener('click', function(e) {
 });
 
 
+let totalClick = 0;
+    
+
+    function click(points) {
+        totalClick += points;
+
+        console.log(totalClick);
+    }
 
