@@ -95,7 +95,7 @@ startElement.addEventListener('click', function(e) {
         // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
         const cellElement = document.getElementById(squareNumber);
 
-        let totalClick = '';
+        
         
         if (bombArray.includes(squareNumber)) {
             cellElement.addEventListener('click', function(){
@@ -112,9 +112,17 @@ startElement.addEventListener('click', function(e) {
             })
         } else {
             cellElement.addEventListener('click', function(event){
-                let clickNumbers = event.detail 
+                let clickNumbers = Number(event.detail) 
 
-                
+                let totalClick = 0;
+
+                function click(numeri, event) {
+                    totalClick += clickNumbers
+    
+                    console.log(totalClick);
+                }
+
+               click(totalClick, clickNumbers)
 
 
                 console.log('hai cliccato la casella numero ' + (squareNumber));
