@@ -30,11 +30,20 @@ Confermate lettura come al solito e buon divertimento :baby-yoda:
 let totalClick = 0;
     
 
-    function click(points) {
-        totalClick += points;
+function click(points) {
+    totalClick += points;
 
-        //console.log(totalClick);
-    }
+    //console.log(totalClick);
+}
+
+function difficult() {
+    const difficultCoiseElement = document.getElementById("difficult_choise");
+    const difficult = difficultCoiseElement.selectedIndex;
+    
+    console.log(difficultCoiseElement.options[difficult].text);
+
+    return (difficultCoiseElement.options[difficult].text);
+}
 
 
 
@@ -59,11 +68,26 @@ startElement.addEventListener('click', function(e) {
         location.reload()
     })
 
+
+    let limit = 0;
+
+    let resultLimit = difficult();
+
+    console.log(resultLimit);
+    
+    
+    if (resultLimit == 'Easy') {
+        limit = 100;
+    } else if (resultLimit == 'Medium') {
+        limit = 81;
+    } else {
+        limit = 49;
+    }
     
 
     
         
-    let limit = 49;
+    
         
     let bombArray = [];
     for (let i = 0; i < 16; i++) {
@@ -111,7 +135,7 @@ startElement.addEventListener('click', function(e) {
         // do dinamicità alla larghezza in base al limite selezionato
         cellElement.style.width =`calc(100% / ${Math.sqrt(limit)})`
 
-        const messageLost = `<div id="gameover" class="position-absolute start-50 translate-middle-x text-white bg-danger rounded-4 shadow p-4">YOU LOSE</div>`;
+        const messageLost = `<div id="gameover" class="position-absolute start-50 translate-middle-x text-white bg-danger rounded-4 shadow p-4 mt-5">YOU LOSE</div>`;
 
         if (bombArray.includes(squareNumber)) {
             cellElement.addEventListener('click', function(){
