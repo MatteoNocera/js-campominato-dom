@@ -20,7 +20,15 @@ Eventuali validazioni e i controlli possiamo farli anche in un secondo momento.
 Io sono a vs disposizione via Tickets fino alle 13. Mi raccomando, non sprecate quest'ora e mezza di lavoro ma iniziate subito a lavorare.
 Confermate lettura come al solito e buon divertimento :baby-yoda:
 
+
 */
+
+// Il computer deve generare 16 numeri casuali in un array e non potranno esserci due numeri uguali
+
+
+
+
+
 
 
 const startElement = document.getElementById('start');
@@ -41,28 +49,92 @@ startElement.addEventListener('click', function(e) {
     restartElement.addEventListener('click', function() {
         location.reload()
     })
+
+    
+
+    
+        
+
+        
+    let bombArray = [];
+    for (let i = 0; i < 16; i++) {
+        /* let bombNumber = bombArray[i];
+        console.log(bombNumber); */
+        let randomGenerated = (Math.floor(Math.random() * 100) + 1);
+
+
+        if (bombArray.includes(randomGenerated)) {
+            let getNewNumber = (Math.floor(Math.random() * 100) + 1);
+            bombArray.push(getNewNumber);
+            console.log(bombArray);
+
+        } else {
+            bombArray.push(randomGenerated);
+            console.log(bombArray);
+        }
+    } 
+   
+
+
+
+
     
     // ciclo
     let limit = 100;
+    
     for (let i = 0; i < limit; i++) {
         // genero una griglia
-        const squareNumber = i;
+        const squareNumber = i + 1;
         
         // costruisco il markup
-        const squareMarkup = `<div id="${i + 1}" class="cell d-flex justify-content-center align-items-center text-white border border-white">${squareNumber + 1}</div>`;
+        const squareMarkup = `<div id="${squareNumber}" class="cell d-flex justify-content-center align-items-center text-white border border-white">${squareNumber}</div>`;
 
         // collego il markup al DOM
         grigliaElement.insertAdjacentHTML('beforeend', squareMarkup);
 
         // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
-        const cellElement = document.getElementById(i + 1);
+        const cellElement = document.getElementById(squareNumber);
 
-        cellElement.addEventListener('click', function(){
-            console.log('hai cliccato la casella numero ' + (squareNumber + 1));
-            cellElement.classList.toggle('bg-primary')
-        })
+        let totalClick = '';
+        
+        if (bombArray.includes(squareNumber)) {
+            cellElement.addEventListener('click', function(){
+                
+                console.log('hai cliccato la casella numero ' + (squareNumber));
+                console.log('YOU LOSE');
+                cellElement.classList.add('bg-danger');
+                
+            
+
+                //alert('Hai colpito la bomba');
+
+
+            })
+        } else {
+            cellElement.addEventListener('click', function(event){
+                let clickNumbers = event.detail 
+
+                
+
+
+                console.log('hai cliccato la casella numero ' + (squareNumber));
+                cellElement.classList.toggle('bg-primary')
+            })
+
+            
+            
+        }
+        
+        
+
+        
+
+
+        
         
     }
+
+
     
 });
 
